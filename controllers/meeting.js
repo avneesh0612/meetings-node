@@ -17,7 +17,7 @@ const postMeeting = (req, res) => {
   });
 };
 
-const getMeeting = (req, res) => {
+const getMeetings = (req, res) => {
   Meeting.find({}, (err, meetings) => {
     if (err) {
       res.send(err);
@@ -26,4 +26,19 @@ const getMeeting = (req, res) => {
   });
 };
 
-module.exports = { postMeeting, getMeeting };
+const getMeeting = (req, res) => {
+  Meeting.find({ _id: req.params.meetingID }, (err, meetings) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(meetings);
+  });
+};
+
+const deleteMeeting = (req, res) => {
+  Meeting.deleteOne({ _id: req.params.meetingID })
+    .then(() => res.status(200).json({ message: "Blog Deleted" }))
+    .catch((err) => res.status(400).json({ message: err }));
+};
+
+module.exports = { postMeeting, getMeetings, deleteMeeting, getMeeting };
