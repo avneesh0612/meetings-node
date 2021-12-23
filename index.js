@@ -23,6 +23,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(router);
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log("server started!");
 });
