@@ -2,6 +2,7 @@ const {
   getMeetings,
   postMeeting,
   deleteMeeting,
+  updateMeeting,
   getMeeting,
 } = require("./controllers/meeting");
 
@@ -13,6 +14,7 @@ router.get("/", (req, res) => {
 
 router.get("/meeting", getMeetings);
 router.get("/meeting/:meetingID", getMeeting);
+router.put("/meeting/:meetingID", updateMeeting);
 router.post("/meeting", postMeeting);
 router.delete("/meeting/:meetingID", deleteMeeting);
 

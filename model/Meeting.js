@@ -13,8 +13,10 @@ const meetingSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  url: String,
-  location: String,
+  url: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("meeting", meetingSchema, "meetings");

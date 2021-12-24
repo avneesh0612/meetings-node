@@ -41,4 +41,32 @@ const deleteMeeting = (req, res) => {
     .catch((err) => res.status(400).json({ message: err }));
 };
 
-module.exports = { postMeeting, getMeetings, deleteMeeting, getMeeting };
+const updateMeeting = (req, res) => {
+  Meeting.findOneAndUpdate(
+    { _id: req.params.meetingID },
+    {
+      $set: {
+        name: req.body.name,
+        date: req.body.date,
+        time: req.body.time,
+        url: req.body.url,
+        location: req.body.location,
+      },
+    },
+    { new: true },
+    (err, meeting) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json(meeting);
+    }
+  );
+};
+
+module.exports = {
+  postMeeting,
+  getMeetings,
+  deleteMeeting,
+  getMeeting,
+  updateMeeting,
+};
