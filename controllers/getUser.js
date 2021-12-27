@@ -2,17 +2,16 @@ const User = require("../model/User");
 
 const getUser = async (req, res) => {
   try {
-    const { _id, first_name, last_name, email } = req.user;
-    console.log(req.user);
+    const { user_id } = req.user;
 
-    res.status(200).json({
-      _id,
-      first_name,
-      last_name,
-      email,
+    User.findById({ _id: user_id }, (err, user) => {
+      if (err) {
+        res.send(err);
+      }
+      res.json({ user });
     });
-  } catch (err) {
-    console.log(err);
+  } catch {
+    res.status(500).send(err);
   }
 };
 

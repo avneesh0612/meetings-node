@@ -8,13 +8,10 @@ dotenv.config();
 
 const app = express();
 
-mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected"))
-  .catch((err) => console.log(err));
+mongoose.connect(process.env.MONGODB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 app.use(cors());
 
@@ -23,6 +20,4 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(router);
 
-app.listen(process.env.PORT || 8000, () => {
-  console.log("server started!");
-});
+app.listen(process.env.PORT || 8000, () => {});
