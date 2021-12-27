@@ -7,7 +7,7 @@ const RegisterUser = async (req, res) => {
     const { first_name, last_name, email, password } = req.body;
 
     if (!(email && password && first_name && last_name)) {
-      res.status(400).send("All input is required");
+      return res.status(400).send("All input is required");
     }
 
     const oldUser = await User.findOne({ email });
@@ -45,7 +45,7 @@ const LoginUser = async (req, res) => {
     const { email, password } = req.body;
 
     if (!(email && password)) {
-      res.status(400).send("All input is required");
+      return res.status(400).send("All input is required");
     }
     const user = await User.findOne({ email });
 
@@ -60,7 +60,7 @@ const LoginUser = async (req, res) => {
 
       user.token = token;
 
-      res.status(200).json(user);
+      return res.status(200).json(user);
     }
     res.status(400).send("Invalid Credentials");
   } catch (err) {

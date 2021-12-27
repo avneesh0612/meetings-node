@@ -12,8 +12,7 @@ const postMeeting = (req, res) => {
   meeting.save((err, meeting) => {
     if (err) {
       res.send(err);
-    }
-    res.json(meeting);
+    } else res.json(meeting);
   });
 };
 
@@ -21,8 +20,7 @@ const getMeetings = (req, res) => {
   Meeting.find({}, (err, meetings) => {
     if (err) {
       res.send(err);
-    }
-    res.json(meetings);
+    } else res.json(meetings);
   });
 };
 
@@ -30,8 +28,7 @@ const getMeeting = (req, res) => {
   Meeting.find({ _id: req.params.meetingID }, (err, meetings) => {
     if (err) {
       res.send(err);
-    }
-    res.json(meetings);
+    } else res.json(meetings);
   });
 };
 
@@ -57,8 +54,7 @@ const updateMeeting = (req, res) => {
     (err, meeting) => {
       if (err) {
         res.send(err);
-      }
-      res.json(meeting);
+      } else res.json(meeting);
     }
   );
 };

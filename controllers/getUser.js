@@ -7,11 +7,10 @@ const getUser = async (req, res) => {
     User.findById({ _id: user_id }, (err, user) => {
       if (err) {
         res.send(err);
-      }
-      res.json({ user });
+      } else res.json({ user });
     });
   } catch {
-    res.status(500).send(err);
+    return res.status(500).send(err);
   }
 };
 
