@@ -20,4 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(router);
 
-app.listen(process.env.PORT || 8000, () => {});
+app.listen(process.env.PORT || 8000, () => {
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
