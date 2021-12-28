@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+const PORT = process.env.PORT || 8080;
+
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URL, {
@@ -20,6 +22,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(router);
 
-app.listen(process.env.PORT || 8000, () => {
-  console.log("Server is running");
+app.listen(PORT, async () => {
+  console.log(`server up on port ${PORT}`);
 });
