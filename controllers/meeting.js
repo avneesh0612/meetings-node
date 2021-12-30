@@ -17,7 +17,7 @@ const postMeeting = (req, res) => {
 };
 
 const getMeetings = (req, res) => {
-  Meeting.find({}, (err, meetings) => {
+  Meeting.find({ user_id: req.user.user_id }, (err, meetings) => {
     if (err) {
       res.send(err);
     } else res.json(meetings);

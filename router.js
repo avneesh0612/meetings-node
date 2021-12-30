@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
   res.send("I am learning node and mongo");
 });
 
-router.get("/meeting", getMeetings);
+router.get("/meeting", auth, getMeetings);
 router.get("/meeting/:meetingID", getMeeting);
 router.put("/meeting/:meetingID", updateMeeting);
 router.post("/meeting", postMeeting);
