@@ -4,9 +4,9 @@ const bcrypt = require("bcryptjs/dist/bcrypt");
 
 const RegisterUser = async (req, res) => {
   try {
-    const { first_name, last_name, email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!(email && password && first_name && last_name)) {
+    if (!(email && password && name)) {
       return res.status(400).send("All input is required");
     }
 
@@ -19,8 +19,7 @@ const RegisterUser = async (req, res) => {
     encryptedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
-      first_name,
-      last_name,
+      name,
       email: email.toLowerCase(),
       password: encryptedPassword,
     });
@@ -33,6 +32,9 @@ const RegisterUser = async (req, res) => {
       }
     );
     user.token = token;
+
+    console.log("token", token);
+    console.log("user", user);
 
     res.status(201).json(user);
   } catch (err) {
