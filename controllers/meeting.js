@@ -6,7 +6,7 @@ const postMeeting = (req, res) => {
     date: req.body.date,
     time: req.body.time,
     url: req.body.url,
-    location: req.body.location,
+    user_id: req.body.user_id,
   });
 
   meeting.save((err, meeting) => {
@@ -47,7 +47,7 @@ const updateMeeting = (req, res) => {
         date: req.body.date,
         time: req.body.time,
         url: req.body.url,
-        location: req.body.location,
+        user_id: req.body.user_id,
       },
     },
     { new: true },
