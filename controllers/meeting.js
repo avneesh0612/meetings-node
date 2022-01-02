@@ -1,19 +1,31 @@
 const Meeting = require("../model/Meeting");
 
 const postMeeting = (req, res) => {
-  const meeting = new Meeting({
-    name: req.body.name,
-    date: req.body.date,
-    time: req.body.time,
-    url: req.body.url,
-    user_id: req.body.user_id,
-  });
+  if (
+    !req.body.name ||
+    !req.body.date ||
+    !req.body.time ||
+    !req.body.url ||
+    !req.body.user_id
+  ) {
+    res.status(400).send({
+      message: "Please fill all the fields",
+    });
+  } else {
+    const meeting = new Meeting({
+      name: req.body.name,
+      date: req.body.date,
+      time: req.body.time,
+      url: req.body.url,
+      user_id: req.body.user_id,
+    });
 
-  meeting.save((err, meeting) => {
-    if (err) {
-      res.send(err);
-    } else res.json(meeting);
-  });
+    meeting.save((err, meeting) => {
+      if (err) {
+        res.send(err);
+      } else res.json(meeting);
+    });
+  }
 };
 
 const getMeetings = (req, res) => {
